@@ -1,0 +1,6 @@
+# Environment variables
+.env
+ .python-version
+.venv/
+__pycache__/
+temp.json
