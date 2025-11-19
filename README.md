@@ -195,3 +195,5 @@ agentic-ai-course/
 
 Created as part of the *Agentic AI Fundamentals — Hands-On Course* led by ChatGPT (GPT-5) with student implementation in Python 3.11.
 Built using OpenAI, LangGraph, LangChain Community, and FAISS.
+
+Adding something here.
