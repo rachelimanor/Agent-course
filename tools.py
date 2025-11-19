@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 
-load_dotenv()  # 👈 this ensures your .env file is read
+load_dotenv()  # this ensures your .env file is read
 
 
 # ✅ Initialize Tavily web search client
