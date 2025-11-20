@@ -43,10 +43,15 @@ A few other important things:
 5. Don't ever ever reuse a branch after a PR has been pushed and merged. 
 
 
-## Correct workflow
+### Differentiation between types of branches:
+main: Your branch. You work here.
+origin/main: Git’s memory of GitHub’s main.
+origin/HEAD: Pointer: “GitHub’s main branch is called main.”
+
+## Correct workflows
 
 ### 1) Start from up-to-date main
-Firstly, make sure your main is synched to the git hub repo. 
+Firstly, before creating a new branch, make sure your main is synched to the git hub repo. 
 
 git switch main
 git pull -- rebase origin main 
@@ -85,3 +90,42 @@ git pull --rebase
 
 ### 10) You could also configure git in advance:
 git config --global pull.rebase true
+
+### 11) To really see all the branches, even remote branches that are stored locally
+git branch -r
+
+### 12) To kill them
+git fetch origin --prune
+
+
+## If I work on a branch and want to stay up to date with the remote repo:
+*First, I can update main (best practice, but not mandatory)*
+
+git switch main
+git fetch origin          get the latest info from GitHub
+git pull                  or: git pull --rebase if you configured that
+
+
+*Then, I need to update my feature branch (experienced devs do this without updating main)*
+
+git switch feature-xyz
+git rebase main
+
+
+*If there are conflicts, after fixing them do:*
+
+git add <file1> <file2> ...
+git rebase --continue
+
+Until no more conflicts
+
+*If you want to skip updating main, and just update the feature branch*
+From the branch:
+
+git fetch origin
+git switch feature-xyz
+git rebase origin/main
+
+
+
+
