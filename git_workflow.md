@@ -108,7 +108,7 @@ git rebase main
 
 *If there are conflicts, after fixing them do:*
 
-git add <file1> <file2> ...
+git add ile1 file2 ...
 git rebase --continue
 
 Until no more conflicts
