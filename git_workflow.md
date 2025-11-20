@@ -96,19 +96,25 @@ git branch -d branch-abc
 *First, I can update main (best practice, but not mandatory)*
 
 git switch main
+
 git fetch origin          get the latest info from GitHub
+
 git pull                  or: git pull --rebase if you configured that
+
 
 
 *Then, I need to update my feature branch (experienced devs do this without updating main)*
 
 git switch feature-xyz
+
 git rebase main
+
 
 
 *If there are conflicts, after fixing them do:*
 
-git add ile1 file2 ...
+git add file1 file2 ...
+
 git rebase --continue
 
 Until no more conflicts
@@ -117,8 +123,11 @@ Until no more conflicts
 From the branch:
 
 git fetch origin
+
 git switch feature-xyz
+
 git rebase origin/main
+
 
 
 ### Misc
