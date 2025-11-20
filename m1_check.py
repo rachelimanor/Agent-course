@@ -1,7 +1,5 @@
 # m1_check.py
 from openai import OpenAI
-from pydantic import BaseModel
-import os
 from dotenv import load_dotenv
 from tools import calc, web_search
 
@@ -25,9 +23,9 @@ tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "expression": {"type": "string", "description": "Math expression to evaluate"}
+                    "text_or_expression": {"type": "string", "description": "Math expression to evaluate"}
                 },
-                "required": ["expression"],
+                "required": ["text_or_expression"],
             },
         },
     },
@@ -53,5 +51,4 @@ resp = client.chat.completions.create(
     tools=tools,
 )
 print(resp.choices[0].message)
-
 
