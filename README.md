@@ -44,6 +44,8 @@ Over 7 days, you’ll go from a simple LLM call → to tool-calling → to a ful
 
 2. **Create a virtual environment**
 
+   *Pyenv users:* this repo pins Python **3.11.9** in `.python-version`. Run `pyenv install 3.11.9` first to avoid version errors.
+
    ```bash
    python3.11 -m venv .venv
    source .venv/bin/activate
@@ -54,8 +56,6 @@ Over 7 days, you’ll go from a simple LLM call → to tool-calling → to a ful
    ```bash
    pip install -r requirements.txt
    ```
-
-   (If missing, you can re-create it from the package list in this README.)
 
 4. **Add your keys in `.env`**
 
@@ -77,7 +77,7 @@ Over 7 days, you’ll go from a simple LLM call → to tool-calling → to a ful
 
 ### **M2 – Tools**
 
-`tools.py`, `m2_tool_test.py`
+`tools.py`, `m2_check.py`
 
 * Implements:
 
