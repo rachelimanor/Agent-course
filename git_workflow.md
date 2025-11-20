@@ -42,7 +42,7 @@ A few other important things:
 4. To pull from repo: git pull
 
 
-Correct workflow
+## Correct workflow
 
 # 1) Start from up-to-date main
 git switch main
