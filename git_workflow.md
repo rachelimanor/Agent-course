@@ -48,7 +48,9 @@ main: Your branch. You work here.
 origin/main: Git’s memory of GitHub’s main.
 origin/HEAD: Pointer: “GitHub’s main branch is called main.”
 
-## Correct workflows
+# Correct workflows
+
+## Editing files and merging to the repo
 
 ### 1) Start from up-to-date main
 Firstly, before creating a new branch, make sure your main is synched to the git hub repo. 
@@ -75,15 +77,60 @@ git push -u origin branch-abc
 ### 5) On GitHub website
 open PR (or Draft PR) branch-abc → main, review, merge
 
+## Cleaning up after a PR merge
+
 ### 6) After merge, update local main
 git switch main
 git pull -- rebase origin main
 
 ### 7) Delete remote branch (on GitHub web or use the cli)
 git push origin --delete branch-abc
+Another useful way that I ended up using
+git branch -r (to see them)
+git fetch origin --prune (to delete them)
 
 ### 8) Delete local branch
 git branch -d branch-abc
+
+### If I work on a branch and want to stay up to date with the remote repo (aka rebase):
+*First, I can update main (best practice, but not mandatory)*
+
+git switch main
+
+git fetch origin          get the latest info from GitHub
+
+git pull                  or: git pull --rebase if you configured that
+
+
+
+*Then, I need to update my feature branch (experienced devs do this without updating main)*
+
+git switch feature-xyz
+
+git rebase main
+
+
+
+*If there are conflicts, after fixing them do:*
+
+git add file1 file2 ...
+
+git rebase --continue
+
+Until no more conflicts
+
+*If you want to skip updating main, and just update the feature branch*
+From the branch:
+
+git fetch origin
+
+git switch feature-xyz
+
+git rebase origin/main
+
+
+
+### Misc
 
 ### 9) To safely rebase, run
 git pull --rebase
@@ -98,33 +145,7 @@ git branch -r
 git fetch origin --prune
 
 
-## If I work on a branch and want to stay up to date with the remote repo:
-*First, I can update main (best practice, but not mandatory)*
 
-git switch main
-git fetch origin          get the latest info from GitHub
-git pull                  or: git pull --rebase if you configured that
-
-
-*Then, I need to update my feature branch (experienced devs do this without updating main)*
-
-git switch feature-xyz
-git rebase main
-
-
-*If there are conflicts, after fixing them do:*
-
-git add <file1> <file2> ...
-git rebase --continue
-
-Until no more conflicts
-
-*If you want to skip updating main, and just update the feature branch*
-From the branch:
-
-git fetch origin
-git switch feature-xyz
-git rebase origin/main
 
 
 
