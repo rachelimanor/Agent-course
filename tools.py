@@ -9,8 +9,9 @@ import os
 load_dotenv()  # this ensures your .env file is read
 
 
-# ✅ Initialize Tavily web search client
-t_client = TavilyClient()
+# ✅ Initialize Tavily web search client (lazy to avoid import-time errors)
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+t_client = TavilyClient(api_key=TAVILY_API_KEY) if TAVILY_API_KEY else None
 
 # ---------------------------
 # TOOL 1: Calculator
@@ -96,6 +97,11 @@ def web_search(query: str, max_results: int = 3) -> WebOut:
     """
     Perform a web search and return results with title, URL, and snippet.
     """
+    if t_client is None:
+        raise RuntimeError(
+            "Tavily client is not configured. Set the TAVILY_API_KEY environment variable."
+        )
+
     r = t_client.search(query=query, max_results=max_results)
     items = [
         WebItem(title=i["title"], url=i["url"], snippet=i.get("content", ""))
